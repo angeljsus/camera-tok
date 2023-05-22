@@ -1,4 +1,5 @@
 import { ipcRenderer, contextBridge } from 'electron';
+import fs from 'fs-extra';
 
 declare global {
   interface Window {
@@ -43,3 +44,4 @@ contextBridge.exposeInMainWorld('Main', api);
  * I advise using the Main/api way !!
  */
 contextBridge.exposeInMainWorld('ipcRenderer', ipcRenderer);
+contextBridge.exposeInMainWorld('fs', fs);
