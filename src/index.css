@@ -10,14 +10,17 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  user-select: none;
 }
 
 .app-bar {
   width: 100%;
-  height: auto;
+  height: 30px;
+/*  border: 2px solid;*/
   background: #edf2f4;
 }
 .app-content {
   width: 100%;
   flex-grow: 1;
+  height: calc(100% - 30px);
 }

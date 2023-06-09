@@ -10,14 +10,15 @@
 	height: 70px;
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
-	border: 1px solid;
+	justify-content: space-around;
+	border: 1px solid red;
 	background: #001d3d;
 }
 
 .camara-header-select {
 	width: 400px;
 	height: 30px;
+	margin-left: 10px;
 }
 
 .camara-button {
@@ -26,6 +27,7 @@
 	font-weight: 500;
 	background: #e0e1dd;
 	color: #343a40;
+	margin-left: 10px;
 }
 
 .camara-button:hover {
@@ -34,9 +36,12 @@
 }
 
 .camara-message {
-	width: 50%;
+	margin-left: 10px;
+	flex: 1;
+	height: 100%;
 	color: white;
 	font-weight: 500;
+	height: 30px;
 }
 
 .camara-displayer {
@@ -48,16 +53,18 @@
 	justify-content: space-around;
 }
 .camara-displayer-content {
-	flex: 1;
+/*	flex: 1;*/
+	width: 50%;
 	height: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
 	align-items: center;
 	align-content: center;
 	border: 1px solid rgba(0, 0, 0, .1);
 }
 
 canvas {
-	border: 1px solid;
+	border: 1px solid red;
+/*	width: 500px !important;*/
+/*	height: 200px !important;*/
 }
