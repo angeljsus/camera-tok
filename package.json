@@ -1,9 +1,11 @@
 {
-  "name": "Camera Tok",
-  "version": "1.0",
+  "name": "camera-tok",
+  "version": "0.5.0",
   "license": "MIT",
   "main": "main/index.js",
-  "author": "Ángel Aguilar",
+  "author": {
+    "name": "Ángel Aguilar"
+  },
   "description": "Project Camera Tok",
   "keywords": [
     "vite",
@@ -22,18 +24,20 @@
     "dist": "npm run build && electron-builder",
     "pack": "npm run build && electron-builder --dir",
     "clean": "rimraf dist main src/out",
-    "type-check": "tsc",
+    "type": "tsc --watch",
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^1.2.0",
     "electron-is-dev": "^2.0.0",
+    "fs-extra": "^11.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "vite": "^2.8.6"
   },
   "devDependencies": {
+    "@types/babel__core": "^7.20.0",
     "@types/node": "^17.0.22",
     "@types/react": "^17.0.41",
     "@types/react-dom": "^17.0.14",
@@ -52,6 +56,7 @@
     "eslint-plugin-react": "^7.29.4",
     "postcss": "^8.4.12",
     "prettier": "2.6.0",
+    "prisma": "^4.13.0",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.6.2"
   },
