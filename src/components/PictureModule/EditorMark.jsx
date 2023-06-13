@@ -9,7 +9,8 @@ const ImageUser = (props) => {
 	const { curp, url } = props;
 
 	useEffect( () => {
-		const imageName = `${curp}.jpg`;
+		const nowTimer = `?${Date.now()}`;
+		const imageName = `${curp}.jpg${nowTimer}`;
 		const imagePath = path.join(url, imageName)
 		image.current.src = imagePath
 		console.log(imagePath)
