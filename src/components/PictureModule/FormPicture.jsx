@@ -23,9 +23,14 @@ const YepDevices = (props) => {
 		_canvasCrop, 
 		_capturaVisor, _setCapturaVisor,
 		_usersCaptured, _setUsersCaptured,
-		_setStreamingObj
+		_setStreamingObj,
+		_setCurp
 	} =
 		useContext(Context);
+
+	// useEffect( () => {
+		// _setCurp('')
+	// },[])
 
 	useEffect(() => {
 		setMessage(_errorHandle.userLog);
@@ -62,6 +67,7 @@ const YepDevices = (props) => {
 
 	const takePicture = (e) => {
 		e.preventDefault();
+		_setCurp('')
 		const curp = inputElement.current.value;
 		if(!curp){
 			return _setErrorHandle({
@@ -135,6 +141,9 @@ const YepDevices = (props) => {
 						status: true,
 						tipo: 'corte' // corte, user
 					})
+				)
+				.then( () => 
+					_setCurp(curp)
 				)
 				.then( () => console.log('Se hizo el recorte para: %s', curp) )
 				.catch((err) => {

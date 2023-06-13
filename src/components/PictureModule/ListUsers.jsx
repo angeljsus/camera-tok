@@ -8,13 +8,29 @@ import Context from './../Context/Context';
 
 const ImageUser = props => {
 	const { curp, url } = props;
+	const {
+		_curp
+	} = useContext(Context);
 	const image = useRef(null)
 
 	useEffect( () => {
-		const imageName = `${curp}.jpg`;
-		const imagePath = path.join(url, imageName)
-		image.current.src = imagePath
+		if(_curp){
+			if(curp === _curp){
+				showImageSource(_curp)
+			}
+		}
+	}, [_curp])
+
+	useEffect( () => {
+		showImageSource(curp)
 	}, [curp])
+
+	const showImageSource = (CURP) => {
+		const nowTimer = `?${Date.now()}`;
+		const imageName = `${CURP}.jpg${nowTimer}`;
+		const imagePath = path.join(url, imageName)
+		image.current.src = imagePath;
+	}
 
 	return <>
 		<img ref={image}/>
@@ -29,7 +45,8 @@ const ListUsers = () => {
 		_pathDir,
 		_setCapturaVisor,
 		_setCurp,
-		_videoElement
+		_videoElement,
+		_curp
 	} = useContext(Context);
 
 	const deleteUserPicture = user => {
@@ -81,7 +98,7 @@ const ListUsers = () => {
 			_usersCaptured.map((item) => 
 				<div key={item.curp_usuario} className="picture-list-row">
 					<div className="picture-column-img">
-						<ImageUser url={_pathDir} curp={ item.curp_usuario }/>
+						<ImageUser url={_pathDir} curp={ item.curp_usuario } curpUpdated={_curp}/>
 					</div>
 					<div className="picture-column-info">
 					{item.curp_usuario}
