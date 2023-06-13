@@ -12,11 +12,6 @@ const FormList = forwardRef(({ devices, setStreaming }, ref) => {
 						{label}
 					</option>
 				))}
-				{devices.map(({ label, deviceId }) => (
-					<option key={deviceId} value={deviceId}>
-						{label}
-					</option>
-				))}
 			</select>
 		</>
 	);
