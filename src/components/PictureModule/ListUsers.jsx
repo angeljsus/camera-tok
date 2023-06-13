@@ -1,22 +1,36 @@
-import { useContext, useEffect } from 'react';
-import Context from './../Context/Context';
+import { useEffect, useState, useContext, useRef } from 'react';
+// api
+import { deleteUserByCurp } from './../../apis/database/databaseApi';
+// styles
 import './ListUsers.css';
-import prevImage from './../../resources/images/test.png'; 
-import { 
-deleteUserByCurp,	selectUsersCaptured 
-} from './../../apis/database/databaseApi';
+// components
+import Context from './../Context/Context';
+
+const ImageUser = props => {
+	const { curp, url } = props;
+	const image = useRef(null)
+
+	useEffect( () => {
+		const imageName = `${curp}.jpg`;
+		const imagePath = path.join(url, imageName)
+		image.current.src = imagePath
+	}, [curp])
+
+	return <>
+		<img ref={image}/>
+	</>;
+}
 
 const ListUsers = () => {
 	const {
 		_usersCaptured, 
-		_setUsersCaptured,
-		_pathDir, _setMessage
+		_setUsersCaptured, 
+		_setErrorHandle,
+		_pathDir,
+		_setCapturaVisor,
+		_setCurp,
+		_videoElement
 	} = useContext(Context);
-
-	useEffect( () => {
-		selectUsersCaptured()
-		.then( arr => _setUsersCaptured(arr))
-	}, [])
 
 	const deleteUserPicture = user => {
 		return deleteUserByCurp(user.curp_usuario)
@@ -24,22 +38,41 @@ const ListUsers = () => {
 			const copy = [..._usersCaptured]
   	const index = _usersCaptured.indexOf(user)
   	if (index !== -1) {
-  	  copy.splice(index, 1);
-  	  return deleteImage(user.curp_usuario)
-  	  .then( () => _setUsersCaptured(copy))
+  	 copy.splice(index, 1);
+  	 return deleteImage(user.curp_usuario)
+  	 .then( () => {
+  	 	console.log('Se elimino la imagen y registro: ' + user.curp_usuario) 
+  	 	_setUsersCaptured(copy)
+  	 	_videoElement.current.play();
+					_setCapturaVisor({
+						status: false,
+						tipo: '' // corte, user
+					}) 
+  	 })
   	}
 		})
 	}
 
 	const deleteImage = curp => {
-		console.log(window)
 			const nameImage = `${curp}.jpg`;
 			return fs.remove(path.join(_pathDir, nameImage))
-			.then( () => _setMessage(`Se elimino registro con: ${curp}`))
 			.catch( err => {
-				_setMessage('Ocurrio un error al intentar eliminar el archivo');
+				_setErrorHandle({
+					error: true,
+					userLog: 'Ocurrio un error al intentar eliminar el archivo',
+					logDev: err				
+				})
 				return Promise.reject(err);
 			})
+	}
+
+	const watchImageUser = (item) => {
+		console.log('watching %s', item.curp_usuario)
+		_setCapturaVisor({
+				status: true,
+				tipo: 'user' // corte, user
+		})
+		_setCurp(item.curp_usuario)
 	}
 
 	return <>
@@ -48,15 +81,17 @@ const ListUsers = () => {
 			_usersCaptured.map((item) => 
 				<div key={item.curp_usuario} className="picture-list-row">
 					<div className="picture-column-img">
-						<img src={prevImage} />
+						<ImageUser url={_pathDir} curp={ item.curp_usuario }/>
 					</div>
 					<div className="picture-column-info">
 					{item.curp_usuario}
 					</div>
 					<div className="picture-column-opts">
 						<button onClick={ () => deleteUserPicture(item) } >[del]</button>
+						<button onClick={ () => watchImageUser(item) } >[Ver]</button>
 					</div>
-				</div>)
+				</div>
+			)
 		}
 		</div>
 	</>

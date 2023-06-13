@@ -1,20 +1,25 @@
-import { forwardRef } from 'react';
-import Context from './../Context/Context';
+import { useContext, forwardRef } from 'react';
 
-const FormList = forwardRef(({devices}, ref) => {
-	return <>
-		<select 
-		ref={ref} 
-		>
-			{
-				devices.map(({ label, deviceId }) => 
-				 <option key={deviceId} value={deviceId}>
+const FormList = forwardRef(({ devices, setStreaming }, ref) => {
+
+
+
+	return (
+		<>
+			<select ref={ref} onChange={ e => setStreaming(e.target.value)}>
+				{devices.map(({ label, deviceId }) => (
+					<option key={deviceId} value={deviceId}>
 						{label}
 					</option>
-				)
-			}
-		</select>
-	</>
-})
+				))}
+				{devices.map(({ label, deviceId }) => (
+					<option key={deviceId} value={deviceId}>
+						{label}
+					</option>
+				))}
+			</select>
+		</>
+	);
+});
 
 export default FormList;

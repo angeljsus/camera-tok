@@ -8,15 +8,14 @@ import PictureModule from './PictureModule/PictureModule';
 const App = () => {
 	const [_window, _setWindow] = useState(null);
 	const [_moduleName, _setModuleName] = useState('PictureModule');
-	const [_videoDevices, _setVideoDevices] = useState([]);
+	const [_streamingObj, _setStreamingObj] = useState({});
+	const [_errorHandle, _setErrorHandle] = useState({ error: false })
 	const [_usersCaptured, _setUsersCaptured] = useState([]);
-	const [_message, _setMessage] = useState('');
-	const [_cropArea, _setCropArea] = useState('');
-	const [_cropStatus, _setCropStatus] = useState(false);
-	const [_inputValidation, _setInputValidation] = useState({
-		status: true,
-		message: ''
-	})
+	const [_curp, _setCurp] = useState('');
+	const [_capturaVisor, _setCapturaVisor] = useState({
+		status: false,
+		tipo: '' // corte, user
+	});
 
 	const _videoElement = useRef(null);
 	const _canvasElement = useRef(null);
@@ -25,19 +24,18 @@ const App = () => {
 	const _pathDir = 'D:/test/';
 
 	const GLOBAL = {
+		// states
 		_moduleName, _setModuleName,		
-		// new
-		_videoDevices, _setVideoDevices,
-		_message, _setMessage,
-		_cropArea, _setCropArea,
-		_inputValidation, _setInputValidation,
-		_cropStatus, _setCropStatus,
 		_usersCaptured, _setUsersCaptured,
-		// elements
+		_streamingObj, _setStreamingObj,
+		_errorHandle, _setErrorHandle,
+		_capturaVisor, _setCapturaVisor,
+		_curp, _setCurp,
+		// // elements
 		_videoElement,
 		_canvasElement,
 		_canvasCrop,
-		// vars
+		// // vars
 		_pathDir
 	};
 

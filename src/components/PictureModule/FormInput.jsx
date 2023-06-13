@@ -1,15 +1,20 @@
-import { forwardRef, useState, useEffect, useContext } from 'react';
-import { getUserByCurp } from './../../apis/database/databaseApi';
+import { useEffect, useState, useContext, forwardRef } from 'react';
+
 import Context from './../Context/Context';
 
-const FormInput = forwardRef(({}, ref) => {
+const FormInput = forwardRef(({ setError }, ref) => {
+
 	const [inputValue, setInputValue] = useState('');
 
-	const { 
-		_setInputValidation
-	} = useContext(Context);
+	useEffect(() => {
+			setError({ error: false})
+			// console.log('Loading input')
+	  return () => {
+					// console.log('unmounting')		
+	  };
+	}, []);
 
-	const KeyEvent = e => {
+	const keyEvent = e => {
 		let element = e.target;
 		const regChars = /[A-Z|a-z|0-9]/g;
 		const validate = e.key.search(regChars);
@@ -22,7 +27,8 @@ const FormInput = forwardRef(({}, ref) => {
 	}
 
 	const validateInput = e => {
-		const upperValue = e.target.value.toUpperCase();
+		const element = e.target;
+		const upperValue = element.value.toUpperCase();
 		return Promise.resolve(upperValue)
 		.then( () => {
 			// validate length
@@ -58,9 +64,15 @@ const FormInput = forwardRef(({}, ref) => {
 			}
 			return Promise.reject(errorString)
 		})
-		.then( () => setInputValue(upperValue))
-		.then( err => _setInputValidation({ status: true, message: ''}))
-		.catch( err => _setInputValidation({ status: false, message: err}))
+		.then( () => setInputValue(upperValue) )
+		.then( () => setError({ error:false }) )
+		.catch( message => {
+			setError({
+				error: true,
+				userLog: message,
+				logDev: 'Es una validación del input',
+			})
+		})
 	}
 
 	const onPasteEvent = e => {
@@ -80,7 +92,7 @@ const FormInput = forwardRef(({}, ref) => {
 			spellCheck={false}
 			placeholder="AAAA000000AAAAAA00"
 			value={inputValue} 
-			onKeyPress={ KeyEvent }
+			onKeyPress={ keyEvent }
 			onChange={ e => setInputValue(e.target.value)}
 			style={{textTransform: 'uppercase'}}
 			onBlur={ validateInput }

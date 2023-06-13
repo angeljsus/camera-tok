@@ -1,0 +1,7 @@
+.image-user-mark {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}

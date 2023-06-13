@@ -2,7 +2,7 @@
 	width: 100%;
 	height: 100%;
 	display: flex;
-	border: 1px solid red;
+/*	border: 1px solid red;*/
 }
 
 .picture-module-list {
@@ -11,7 +11,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-/*	border: 1px solid black;*/
+/*	border: 2px solid black;*/
 }
 .picture-module-edit {
 	display: flex;

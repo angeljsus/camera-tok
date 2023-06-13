@@ -1,57 +1,60 @@
-import { useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
+// styles
+import './EditorPicture.css';
+// components
 import Context from './../Context/Context';
-import EditorPreviewArea from './EditorPreviewArea'
-import './EditorPicture.css'
+import EditorMark from './EditorMark';
 
-const EditorPicture = () => {
-
+const EditorPicture = (props) => {
+	const { countDevices } = props;
 	const { 
-		_videoElement, _videoDevices,
-		_cropArea, _setCropArea,
-		_canvasElement, _canvasCrop,
-		_cropStatus,
+		_videoElement,
+		_canvasElement,
+		_canvasCrop,
+		_capturaVisor,
+		_curp,
+		_pathDir
 	} = useContext(Context);
+	const [area, setArea] = useState({});
 
-	const setCropPreviewArea = () => {
+	useEffect( () => {
+		const videoElement = _videoElement.current; 
+		videoElement.addEventListener('loadeddata', getArea)
+
+		return () => {
+			videoElement.removeEventListener('loadeddata', getArea)
+		}
+	}, [])
+
+	const getArea = () => {
 		const video = _videoElement.current;
 		const cropSide = (video.videoWidth*.01)*25;
 		const cropArea = video.videoWidth - cropSide;
-		_setCropArea({
+		setArea({
 			cropArea: cropArea,
 			cropSide:  cropSide,
 			width: video.videoWidth,
 			height: video.videoHeight,
 		})
-
 	}
-
-	return <>
-	<div className="picture-editor-area">
-		{ _videoDevices.length 
-			?
-			<>
+	
+	return (
+		<>
+			<div className="picture-editor-area">
 				<div className="picture-area-back">
-					<canvas 
-						ref={_canvasElement}
-						style={{display:'none'}}
-					/>
-					<canvas 
-						ref={_canvasCrop}
-						style={{display:'none'}}
-					/>
-					<EditorPreviewArea 
-						area={ _cropArea } 
-						status={_cropStatus}
-					/>
-					<video 
-						ref={_videoElement} 
-						onLoadedData={ setCropPreviewArea } 
-					/>
+						<video ref={_videoElement} />  
+						<canvas ref={_canvasElement} />  
+						<canvas ref={_canvasCrop} />  
+							<EditorMark 
+								area={area} 
+								visor={ _capturaVisor } 
+								curp={_curp}
+								url={ _pathDir }
+								/>
 				</div>
-			</>
-			: null }
-		</div>
-	</>
-}
+			</div>
+		</>
+	);
+};
 
 export default EditorPicture;

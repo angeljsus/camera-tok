@@ -16,6 +16,9 @@
 }
 
 .picture-area-back  video{
-	width: auto;
-	height: auto;
+	width:  640px;
+	height: 480px;
+}
+.picture-area-back  canvas {
+	display: none;
 }
