@@ -25,12 +25,7 @@ const YepDevices = (props) => {
 		_usersCaptured, _setUsersCaptured,
 		_setStreamingObj,
 		_setCurp
-	} =
-		useContext(Context);
-
-	// useEffect( () => {
-		// _setCurp('')
-	// },[])
+	} = useContext(Context);
 
 	useEffect(() => {
 		setMessage(_errorHandle.userLog);
@@ -43,6 +38,7 @@ const YepDevices = (props) => {
 			status: false,
 			tipo: '' // corte, user
 		}) 
+		_setCurp('')
 		setKeyReset((prev) => (prev ? false : true));
 	};
 
@@ -53,6 +49,7 @@ const YepDevices = (props) => {
 			status: false,
 			tipo: '' // corte, user
 		}) 
+		_setCurp('')
 	}
 
 	const showVisor = e => {
@@ -63,11 +60,11 @@ const YepDevices = (props) => {
 			tipo: '' // corte, user
 		})
 		_setErrorHandle({ error: false})
+		_setCurp('')
 	}
 
 	const takePicture = (e) => {
 		e.preventDefault();
-		_setCurp('')
 		const curp = inputElement.current.value;
 		if(!curp){
 			return _setErrorHandle({
