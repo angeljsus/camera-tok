@@ -39,7 +39,10 @@ const YepDevices = (props) => {
 			tipo: '' // corte, user
 		}) 
 		_setCurp('')
-		setKeyReset((prev) => (prev ? false : true));
+		_setErrorHandle({ error: false})
+		if(inputElement.current.value){
+			setKeyReset((prev) => (prev ? false : true));
+		}
 	};
 
 	const cleanViewArea = e => {

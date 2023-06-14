@@ -101,7 +101,6 @@ const ListUsers = () => {
 				const classSelected = _curp === item.curp_usuario ? 'row-user-selected' : '';
 
 				return (
-				<>
 					<div key={item.curp_usuario} className={'picture-list-row ' + classSelected} >
 						<div className="picture-column-img">
 							<ImageUser url={_pathDir} curp={ item.curp_usuario } curpUpdated={_curp}/>
@@ -114,7 +113,6 @@ const ListUsers = () => {
 							<button onClick={ (e) => watchImageUser(item) } ><AiOutlinePicture /></button>
 						</div>
 					</div>
-				</>
 				)
 			})
 		}
