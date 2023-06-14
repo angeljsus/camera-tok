@@ -24,3 +24,7 @@
   flex-grow: 1;
   height: calc(100% - 30px);
 }
+
+button {
+  cursor: context-menu;
+}

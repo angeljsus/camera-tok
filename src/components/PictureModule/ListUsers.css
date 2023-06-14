@@ -12,6 +12,10 @@
 	border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
+.row-user-selected {
+	border-bottom: 2px solid gray;
+}
+
 .picture-column-img {
 	flex: 1;
 	display: flex;
@@ -43,7 +47,17 @@
 }
 
 .picture-column-opts button {
-	width: 35px;
-	height: 30px;
-	border: 2px solid gray;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	border: 1px solid gray;
+	color: gray;
+}
+
+.picture-column-opts button:hover {
+	color: #2b2d42;
+	border: 1px solid #2b2d42;
 }

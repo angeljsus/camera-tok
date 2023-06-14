@@ -5,6 +5,7 @@ import { deleteUserByCurp } from './../../apis/database/databaseApi';
 import './ListUsers.css';
 // components
 import Context from './../Context/Context';
+import { AiOutlineClose, AiOutlinePicture } from 'react-icons/ai';
 
 const ImageUser = props => {
 	const { curp, url } = props;
@@ -95,20 +96,27 @@ const ListUsers = () => {
 	return <>
 		<div className="picture-list-area">
 		{
-			_usersCaptured.map((item) => 
-				<div key={item.curp_usuario} className="picture-list-row">
-					<div className="picture-column-img">
-						<ImageUser url={_pathDir} curp={ item.curp_usuario } curpUpdated={_curp}/>
+			_usersCaptured.map((item) => {
+				
+				const classSelected = _curp === item.curp_usuario ? 'row-user-selected' : '';
+
+				return (
+				<>
+					<div key={item.curp_usuario} className={'picture-list-row ' + classSelected} >
+						<div className="picture-column-img">
+							<ImageUser url={_pathDir} curp={ item.curp_usuario } curpUpdated={_curp}/>
+						</div>
+						<div className="picture-column-info">
+						{item.curp_usuario}
+						</div>
+						<div className="picture-column-opts">
+							<button onClick={ () => deleteUserPicture(item) } ><AiOutlineClose /></button>
+							<button onClick={ (e) => watchImageUser(item) } ><AiOutlinePicture /></button>
+						</div>
 					</div>
-					<div className="picture-column-info">
-					{item.curp_usuario}
-					</div>
-					<div className="picture-column-opts">
-						<button onClick={ () => deleteUserPicture(item) } >[del]</button>
-						<button onClick={ () => watchImageUser(item) } >[Ver]</button>
-					</div>
-				</div>
-			)
+				</>
+				)
+			})
 		}
 		</div>
 	</>
