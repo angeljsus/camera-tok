@@ -3,18 +3,14 @@ import { db } from './../../precarga';
 const insertUser = data => {
 	const {
 		curp_usuario,
-		nombre_usuario,
-		paterno_usuario,
-		materno_usuario,
-		estatus_usuario
+		nombre_usuario
 	} = data;
 
 	return new Promise( (resolve, reject) => {
 		db.transaction( tx => {
 			tx.executeSql(`
-				INSERT INTO tbl_usuario VALUES(?,?,?,?,?)
-			`,[ curp_usuario, nombre_usuario, paterno_usuario, 
-				materno_usuario, estatus_usuario ])
+				INSERT INTO tbl_usuario VALUES(?,?)
+			`,[ curp_usuario, nombre_usuario ])
 		}, err => reject(err), () => resolve(data))
 	})	
 }

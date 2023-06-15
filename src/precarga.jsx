@@ -7,9 +7,6 @@ const loadDatabaseStructure = () => {
 				tx.executeSql(`CREATE TABLE IF NOT EXISTS tbl_usuario(
 					curp_usuario varchar(18),
 					nombre_usuario varchar(100),
-					paterno_usuario varchar(100),
-					materno_usuario varchar(100),
-					estatus_usuario int,
 					PRIMARY KEY (curp_usuario) 
 				);`);
 			},

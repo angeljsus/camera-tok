@@ -31,12 +31,6 @@ const YepDevices = (props) => {
 		setMessage(_errorHandle.userLog);
 	}, [_errorHandle.error, _errorHandle.userLog]);
 
-	useEffect( () => {
-		// _capturaVisor.tipo === 'user' 
-		console.log(_capturaVisor)
-
-	}, [_capturaVisor.tipo])
-
 	const cleanForm = (e) => {
 		e.preventDefault();
 		_videoElement.current.play();
@@ -60,17 +54,6 @@ const YepDevices = (props) => {
 		}) 
 		_setCurp('')
 	}
-
-	// const showVisor = e => {
-	// 	e.preventDefault();
-	// 	_videoElement.current.play();
-	// 	_setCapturaVisor({
-	// 		status: false,
-	// 		tipo: '' // corte, user
-	// 	})
-	// 	_setErrorHandle({ error: false})
-	// 	_setCurp('')
-	// }
 
 	const takePicture = (e) => {
 		e.preventDefault();
@@ -136,9 +119,6 @@ const YepDevices = (props) => {
 					_setUsersCaptured([..._usersCaptured,{
 						curp_usuario: curp,
 						nombre_usuario: '',
-						paterno_usuario: '',
-						materno_usuario: '',
-						estatus_usuario: 0,
 						}])
 					}
 				})
