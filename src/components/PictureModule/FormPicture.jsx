@@ -31,6 +31,12 @@ const YepDevices = (props) => {
 		setMessage(_errorHandle.userLog);
 	}, [_errorHandle.error, _errorHandle.userLog]);
 
+	useEffect( () => {
+		// _capturaVisor.tipo === 'user' 
+		console.log(_capturaVisor)
+
+	}, [_capturaVisor.tipo])
+
 	const cleanForm = (e) => {
 		e.preventDefault();
 		_videoElement.current.play();
@@ -55,16 +61,16 @@ const YepDevices = (props) => {
 		_setCurp('')
 	}
 
-	const showVisor = e => {
-		e.preventDefault();
-		_videoElement.current.play();
-		_setCapturaVisor({
-			status: false,
-			tipo: '' // corte, user
-		})
-		_setErrorHandle({ error: false})
-		_setCurp('')
-	}
+	// const showVisor = e => {
+	// 	e.preventDefault();
+	// 	_videoElement.current.play();
+	// 	_setCapturaVisor({
+	// 		status: false,
+	// 		tipo: '' // corte, user
+	// 	})
+	// 	_setErrorHandle({ error: false})
+	// 	_setCurp('')
+	// }
 
 	const takePicture = (e) => {
 		e.preventDefault();
@@ -179,9 +185,6 @@ const YepDevices = (props) => {
 				{
 					_capturaVisor.tipo === 'corte'
 						? <button onClick={cleanViewArea}>Tomar Otra</button>
-						: 
-						_capturaVisor.tipo === 'user' 
-						? <button onClick={ showVisor }>Ver Visor</button>
 						: <button onClick={takePicture}>Capturar</button>
 				}
 					<button onClick={cleanForm}>Nuevo Registro</button>
@@ -215,7 +218,7 @@ const NopDevices = () => {
 const FormPicture = (props) => {
 	const { countDevices, devicesList } = props;
 	const [loadForm, setLoadForm] = useState(false);
-	const { _streamingObj } = useContext(Context);
+	const { _streamingObj, _capturaVisor } = useContext(Context);
 
 	useEffect(() => {
 		if (_streamingObj.deviceId) {
@@ -226,7 +229,11 @@ const FormPicture = (props) => {
 	return (
 		<>
 			<div className="picture-form-area">
-				<form className="picture-form-elements">{loadForm ? <YepDevices list={devicesList} /> : <NopDevices />}</form>
+				<form className="picture-form-elements">
+					<fieldset disabled={_capturaVisor.tipo === 'user' ? true : false}>
+						{loadForm ? <YepDevices list={devicesList} /> : <NopDevices />}
+					</fieldset>
+				</form>
 			</div>
 		</>
 	);
