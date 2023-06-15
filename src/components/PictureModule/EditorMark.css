@@ -1,7 +1,44 @@
 .image-user-mark {
 	flex: 1;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	align-content: center;
 	justify-content: center;
+/*	border: 1px solid;*/
+}
+
+.user-mark-container {
+	width: auto;
+	height: auto;
+/*	border: 1px solid;*/
+}
+.user-mark-close {
+	width: 222px;
+	height: 23px;
+	display: flex;
+	justify-content: flex-end;
+/*	border: 1px solid;*/
+}
+
+.user-mark-close button {
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	border: 1px solid gray;
+	color: gray;
+}
+
+.user-mark-close button:hover {
+	color: #2b2d42;
+	border: 1px solid #2b2d42;
+}
+
+.user-mark-info {
+	display: flex;
+	justify-content: center;
+	padding: 10px 0 10px 0;
+/*	border: 1px solid;*/
 }

@@ -1,23 +1,52 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 // image preview
 import prevImage from './../../resources/images/test.png';
 // style
 import './EditorMark.css'
+// components
+import Context from './../Context/Context';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const ImageUser = (props) => {
 	const image = useRef(null)
 	const { curp, url } = props;
+	const { 
+		_videoElement,
+		_setErrorHandle,
+		_setCapturaVisor,
+		_curp,
+		_setCurp,
+		_pathDir
+	} = useContext(Context);
 
 	useEffect( () => {
 		const nowTimer = `?${Date.now()}`;
-		const imageName = `${curp}.jpg${nowTimer}`;
-		const imagePath = path.join(url, imageName)
+		const imageName = `${_curp}.jpg${nowTimer}`;
+		const imagePath = path.join(_pathDir, imageName)
 		image.current.src = imagePath
 		console.log(imagePath)
-	}, [curp])
+	}, [_curp])
+
+	const showVisor = e => {
+		_videoElement.current.play();
+		_setCapturaVisor({
+			status: false,
+			tipo: '' // corte, user
+		})
+		_setErrorHandle({ error: false})
+		_setCurp('')
+	}
 
 	return <>
-		<img ref={image}/>
+			<div className="user-mark-close">
+				<button onClick={ showVisor }>
+					<AiOutlineClose/>
+				</button>
+			</div>
+		<div className="user-mark-container">
+			<img ref={image}/>
+			<div className="user-mark-info">{curp}</div>
+		</div>
 	</>;
 }
 

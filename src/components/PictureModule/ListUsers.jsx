@@ -91,6 +91,7 @@ const ListUsers = () => {
 				tipo: 'user' // corte, user
 		})
 		_setCurp(item.curp_usuario)
+		_setErrorHandle({error: false})
 	}
 
 	return <>
