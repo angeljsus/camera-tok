@@ -58,13 +58,8 @@ const YepDevices = (props) => {
 	const takePicture = (e) => {
 		e.preventDefault();
 		const curp = inputElement.current.value;
-		if(!curp){
-			return _setErrorHandle({
-				error: true,
-				userLog: 'El campo de CURP no puede estar vacio',
-				logDev: 'Es una validación'
-			});
-		}
+		const countChars = curp.length; 
+
 		if (!_errorHandle.error && curp) {
 			const videoElement = _videoElement.current;
 			const canvasElement = _canvasElement.current;
@@ -106,10 +101,7 @@ const YepDevices = (props) => {
 							? { curp_usuario: curp } // necesito actualizar la imagen
 							: insertUser({
 									curp_usuario: curp,
-									nombre_usuario: '',
-									paterno_usuario: '',
-									materno_usuario: '',
-									estatus_usuario: 0
+									nombre_usuario: ''
 							  });
 					})
 				)
@@ -140,6 +132,7 @@ const YepDevices = (props) => {
 					});
 				});
 		}
+
 	};
 
 	return (
