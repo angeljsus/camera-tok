@@ -13,7 +13,8 @@ export default ({ command }: ConfigEnv): UserConfig => {
       plugins: [react()],
       resolve: {
         alias: {
-          '/@': srcRoot
+          '/@': srcRoot,
+          '/@components': join(srcRoot, 'components'),
         }
       },
       build: {
@@ -36,7 +37,8 @@ export default ({ command }: ConfigEnv): UserConfig => {
     plugins: [react()],
     resolve: {
       alias: {
-        '/@': srcRoot
+        '/@': srcRoot,
+        '/@components': join(srcRoot, 'components'),
       }
     },
     build: {

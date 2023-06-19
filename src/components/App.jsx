@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import Context from './Context/Context';
 import AppBar from './AppBar/AppBar';
 import Test from './Test/Test';
-import PictureModule from './PictureModule/PictureModule';
-// import DatabaseComponent from './../apis/database/DatabaseComponent';
+import PictureModule from '/@components/PictureModule/PictureModule';
 
 const App = () => {
 	const [_window, _setWindow] = useState(null);
@@ -45,8 +44,11 @@ const App = () => {
 			case 'Test':
 				_setWindow(<Test />);
 				break;
-			case 'PictureModule':
-				_setWindow(<PictureModule />);
+			// case 'PictureModule':
+				// _setWindow(<PictureModule />);
+				// break;
+			default:
+					_setWindow(null);
 				break;
 		}
 	}, [_moduleName]);
