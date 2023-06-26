@@ -60,7 +60,8 @@ const deleteUserByCurp = curp => {
 				WHERE
 					curp_usuario = ?
 			`,[ curp ] )
-		}, err => reject(err), () => resolve() )
+		}, err => reject(err)
+		, () => resolve() )
 	})	
 }
 

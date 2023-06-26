@@ -15,6 +15,8 @@ export default ({ command }: ConfigEnv): UserConfig => {
         alias: {
           '/@': srcRoot,
           '/@components': join(srcRoot, 'components'),
+          '/@apis': join(srcRoot, 'apis'),
+          '/@resources': join(srcRoot, 'resources'),
         }
       },
       build: {
@@ -39,6 +41,8 @@ export default ({ command }: ConfigEnv): UserConfig => {
       alias: {
         '/@': srcRoot,
         '/@components': join(srcRoot, 'components'),
+        '/@apis': join(srcRoot, 'apis'),
+        '/@resources': join(srcRoot, 'resources'),
       }
     },
     build: {

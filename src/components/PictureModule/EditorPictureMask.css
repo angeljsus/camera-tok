@@ -1,0 +1,13 @@
+.mask-content {
+	display: flex;
+	position: absolute;
+}
+
+.mask-content-side {
+	height: 100%;
+}
+
+.mask-content-center {
+	height: 100%;
+	display: flex;
+}
