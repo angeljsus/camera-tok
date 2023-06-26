@@ -4,26 +4,29 @@ import AppBar from '/@components/AppBar/AppBar';
 import Test from '/@components/Test/Test';
 import PictureModule from '/@components/PictureModule/PictureModule';
 import { useThrowReducer } from '/@components/PictureModule/PictureModuleHooks';
+import Modal from '/@components/Modal/Modal';
+import { useModal } from '/@components/Modal/ModalHooks';
 
 const App = () => {
 	const [_window, _setWindow] = useState(null);
 	const [_moduleName, _setModuleName] = useState('PictureModule');
 	// states
-  const [_streamingObj, _setStreamingObj] = useState({});
+	const [_streamingObj, _setStreamingObj] = useState({});
 	const [_arrayUsers, _setArrayUsers] = useState([]);
-  const [_capturedState, _setCapturedState] = useState({
+	const [_capturedState, _setCapturedState] = useState({
 		area: 'default', // default prevCropper userCropper
-		cropedCurp:'', // curp from saved images
+		cropedCurp: '', // curp from saved images
 	})
 	// hooks
-	const {_errorHandle, _dispatchErrorHandle} = useThrowReducer()
+	const { _errorHandle, _dispatchErrorHandle } = useThrowReducer();
+	const { _modal, _setModal } = useModal();
 	// elements
 	const _videoElement = useRef(null);
 	const _canvasElement = useRef(null);
 	const _canvasCrop = useRef(null);
 	// vars
 	const _pathDir = 'D:/test/';
-	
+
 	const GLOBAL = {
 		// states
 		_moduleName, _setModuleName,
@@ -36,6 +39,7 @@ const App = () => {
 		_canvasCrop,
 		// hooks
 		_errorHandle, _dispatchErrorHandle,
+		_modal, _setModal,
 		//vars
 		_pathDir,
 	};
@@ -63,6 +67,7 @@ const App = () => {
 						<AppBar />
 					</div>
 					<div className="app-content">
+						<Modal />
 						{_window}
 					</div>
 				</div>

@@ -25,6 +25,7 @@
   display: flex;
   align-items: center;
   font-weight: 500;
+  font-size: 1.2em;
   /* border : 1px solid; */
 }
 
@@ -50,6 +51,7 @@
 .info-modal-title {
   flex: 1;
   font-weight: 500;
+  /* background: red; */
   /* border: 1px solid; */
 }
 .info-modal-desc {

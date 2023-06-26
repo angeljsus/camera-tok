@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useRef } from 'react';
 // components
 import Context from '/@components/Context/Context';
-import { AiOutlineClose, AiOutlinePicture } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
 import ImageUser from '/@components/Elements/ImageUser';
 // apis
 import { selectUsersCaptured, deleteUserByCurp } from '/@apis/database/databaseApi';
@@ -37,7 +37,7 @@ const useUsers = () => {
 const ItemList = props => {
 	const {
 		_setCapturedState, _capturedState, _dispatchErrorHandle,
-		_pathDir, _arrayUsers, _setArrayUsers, _videoElement
+		_pathDir, _arrayUsers, _setArrayUsers, _videoElement, _setModal, _modal
 	} = useContext(Context);
 
 	const [classRow, setClassRow] = useState('')
@@ -65,9 +65,21 @@ const ItemList = props => {
 		})
 	}
 
+	const openConfirmOption = data => {
+		console.log(data)
+		_setModal({
+			show: true,
+			data: [
+				{ title: 'Curp:', description: data.curp_usuario },
+				{ title: 'Archivo:', description: path.join(_pathDir, data.curp_usuario) + '.jpg' },
+			],
+			onConfirm: () => deleteUserPicture(data)
+		})
+	}
+
 	const deleteUserPicture = user => {
 		return deleteUserByCurp(user.curp_usuario)
-			.then(() => {
+			.then((result) => {
 				const copy = [..._arrayUsers]
 				const index = _arrayUsers.indexOf(user)
 				if (index > -1) {
@@ -82,6 +94,7 @@ const ItemList = props => {
 								cropedCurp: ''
 							})
 							_setArrayUsers(copy);
+							_setModal({ show: false })
 						})
 				}
 			})
@@ -112,7 +125,7 @@ const ItemList = props => {
 					{data.curp_usuario}
 				</div>
 				<div className="picture-column-opts">
-					<button onClick={() => deleteUserPicture(data)} ><AiOutlineClose /></button>
+					<button onClick={() => openConfirmOption(data)} ><AiOutlineClose /></button>
 				</div>
 			</div>
 		</>

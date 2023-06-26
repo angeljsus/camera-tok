@@ -83,7 +83,7 @@ const FormItems = props => {
 				nivel: 1
 			})
 		} else {
-			_dispatchErrorHandle({ type: 'SUCCESS' })
+			_dispatchErrorHandle({ type: 'SUCCESS',  userMessage: '', devMessage: ''})
 		}
 	}, [inputValidation.curp, inputValidation.error, inputValidation.message])
 	// reset 
