@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 
 import Icon from './../../assets/icons/Icon-Electron.png';
-import Context from './../Context/Context'
 import './AppBar.css'
 
 function AppBar() {

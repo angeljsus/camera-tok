@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 const useModal = () => {
   const [_modal, _setModal] = useState({

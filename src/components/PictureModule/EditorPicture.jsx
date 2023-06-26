@@ -4,8 +4,6 @@ import './EditorPicture.css';
 // components
 import Context from '/@components/Context/Context';
 import EditorPictureMask from '/@components/PictureModule/EditorPictureMask';
-// hooks
-import { useThrowReducer } from './PictureModuleHooks';
 
 const useStreaming = () => {
 	const { _videoElement, _streamingObj, _dispatchErrorHandle } = useContext(Context);
