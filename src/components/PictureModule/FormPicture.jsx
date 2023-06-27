@@ -9,14 +9,14 @@ import './FormPicture.css';
 const useDevices = () => {
 	const [arrayDevices, setArrayDevices] = useState([]);
 	const {
-		_setStreamingObj,
-		_capturedState
+		_capturedState, _setStreamingObj
 	} = useContext(Context);
 
 	useEffect(() => {
 		console.log('#1 getting and setting devices...')
 		getArrayDevices()
 			.then(result => {
+				console.log(result)
 				result.length ? _setStreamingObj(result[0]) : false;
 				setArrayDevices(result)
 			})
@@ -44,7 +44,7 @@ const useDevices = () => {
 
 const FormPicture = () => {
 
-	const { arrayDevices, setArrayDevices, _capturedState } = useDevices();
+	const { arrayDevices, _capturedState } = useDevices();
 
 	return (
 		<>

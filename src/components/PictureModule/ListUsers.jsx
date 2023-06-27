@@ -66,7 +66,6 @@ const ItemList = props => {
 	}
 
 	const openConfirmOption = data => {
-		console.log(data)
 		_setModal({
 			show: true,
 			data: [

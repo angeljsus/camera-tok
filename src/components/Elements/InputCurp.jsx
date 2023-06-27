@@ -113,6 +113,25 @@ const InputCurp = forwardRef((props, ref) => {
               }) : ''
           )
           .then(() =>
+            dateValidation > today ?
+              Promise.reject({
+                position: [4, 10],
+                message: 'Fecha no existe ' +
+                  dateValidation.toLocaleDateString('ES-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })
+              })
+              : console.log('Fecha validada: ',
+                dateValidation.toLocaleDateString('ES-ES', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })
+              )
+          )
+          .then(() =>
             dateValidation == 'Invalid Date'
               ? Promise.reject({
                 position: [8, 10],
@@ -260,7 +279,6 @@ const InputCurp = forwardRef((props, ref) => {
         }
       })
       .then(() => {
-        console.warn('Cambio error a false')
         setDataValidation({
           curp: curp,
           error: false,

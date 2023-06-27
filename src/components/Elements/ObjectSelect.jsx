@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 
 const ObjectSelect = forwardRef((props, ref) => {
 	const { array, keyName, keyId, setValueObject } = props;

@@ -6,16 +6,15 @@ import Context from '/@components/Context/Context';
 import EditorPictureMask from '/@components/PictureModule/EditorPictureMask';
 
 const useStreaming = () => {
-	const { _videoElement, _streamingObj, _dispatchErrorHandle } = useContext(Context);
+	const { _streamingObj, _dispatchErrorHandle } = useContext(Context);
+
+	const [stream, setStream] = useState('');
 
 	useEffect(() => {
 		if (_streamingObj.deviceId) {
-			getMediaStream(_streamingObj)
-				.then((stream) => {
-					const videoElement = _videoElement.current;
-					videoElement.srcObject = stream;
-					videoElement.play();
-				})
+			console.log('Usando: ', _streamingObj.label)
+			getMediaStream(_streamingObj.deviceId)
+				.then(stream => setStream(stream))
 		}
 	}, [_streamingObj.deviceId])
 
@@ -31,7 +30,7 @@ const useStreaming = () => {
 				// return streaming 
 				return stream;
 			})
-			.catch( err => {
+			.catch(err => {
 				_dispatchErrorHandle({
 					type: 'ERROR',
 					id: '',
@@ -52,17 +51,25 @@ const useStreaming = () => {
 			);
 	};
 
-	return {};
+	return { stream };
 }
 
 const EditorPicture = () => {
 	const {
 		_videoElement,
 		_canvasElement,
-		_canvasCrop
+		_canvasCrop,
 	} = useContext(Context);
 
-	const { } = useStreaming();
+	const { stream } = useStreaming();
+
+	useEffect(() => {
+		const video = _videoElement.current;
+		if (stream) {
+			video.srcObject = stream;
+			video.play();
+		}
+	}, [stream])
 
 	return (
 		<>
