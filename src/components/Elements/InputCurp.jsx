@@ -160,6 +160,16 @@ const InputCurp = forwardRef((props, ref) => {
             }
           })
           .then(() => {
+            const nem = curp.substring(11, 13);
+            const finded = nem.search(/AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE/g);
+            if (finded < 0) {
+              return Promise.reject({
+                position: [11, 13],
+                message: 'El valor del némico no coincide con el catálogo de entidades federativas'
+              })
+            }
+          })
+          .then(() => {
             const val = curp.substring(16, 17);
             const obtaniedYear = dateValidation.getFullYear();
             const arrLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
