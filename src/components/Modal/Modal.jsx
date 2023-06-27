@@ -47,10 +47,10 @@ const Modal = props => {
             </div>
             <div className="modal-options">
               <ButtonString
-                title='Salir'
+                title='Cancelar'
                 clickEvent={() => _setModal({ ..._setModal, show: false })}
               />
-              <ButtonString title='Confirmar' clickEvent={_modal.onConfirm} />
+              <ButtonString title='Eliminar' clickEvent={_modal.onConfirm} />
             </div>
           </div>
         </div>

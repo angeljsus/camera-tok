@@ -8,9 +8,9 @@ import isDev from 'electron-is-dev';
 function createWindow() {
   // Create the browser window.
   const window = new BrowserWindow({
-    width: 1400,
+    width: 1366,
     height: 768,
-    minWidth: 1400,
+    minWidth: 1366,
     minHeight: 768,
     //  change to false to use AppBar
     frame: false,

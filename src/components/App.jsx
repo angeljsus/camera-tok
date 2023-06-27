@@ -25,7 +25,7 @@ const App = () => {
 	const _canvasElement = useRef(null);
 	const _canvasCrop = useRef(null);
 	// vars
-	const _pathDir = 'D:/test/';
+	const _pathDir = 'C:/FOTO2023CPV/';
 
 	const GLOBAL = {
 		// states
