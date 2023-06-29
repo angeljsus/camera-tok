@@ -37,32 +37,28 @@ const useDevices = () => {
 			})
 	}
 
-	return { arrayDevices, setArrayDevices, _capturedState };
+	return { arrayDevices, setArrayDevices, _capturedState, _setStreamingObj };
 };
-
-
 
 const FormPicture = () => {
 
-	const { arrayDevices, _capturedState } = useDevices();
+	const { arrayDevices, _capturedState, setArrayDevices, _setStreamingObj } = useDevices();
 
 	return (
-		<>
-			<div className="picture-form-area">
-				<form className="picture-form-elements">
-					<fieldset
-						disabled={_capturedState.area === 'userCropper' ? true : false}
-					>
-						{
-							arrayDevices.length
-								? <FormItems devices={arrayDevices} />
-								: <FormDeviceNotFound />
-						}
-					</fieldset>
-				</form>
-			</div>
-		</>
-	);
+    <>
+      <div className="picture-form-area">
+        <form className="picture-form-elements">
+          <fieldset disabled={_capturedState.area === 'userCropper' ? true : false}>
+            {arrayDevices.length ? (
+              <FormItems devices={arrayDevices} />
+            ) : (
+              <FormDeviceNotFound setDevices={setArrayDevices} setStreaming={_setStreamingObj} />
+            )}
+          </fieldset>
+        </form>
+      </div>
+    </>
+  );
 };
 
 export default FormPicture;
