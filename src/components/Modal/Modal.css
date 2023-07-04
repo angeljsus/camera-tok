@@ -6,7 +6,8 @@
   align-items: center;
   justify-content: center;
   /* background: rgba(0, 0, 0, .7); */
-	background: #495057;
+	/* background: #495057; */
+	background: #343a40;
   z-index: 1;
 }
 

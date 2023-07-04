@@ -5,3 +5,7 @@
 .undraggable {
   -webkit-app-region: no-drag;
 }
+
+.app-bar-bar button {
+  height: 32px;
+}
