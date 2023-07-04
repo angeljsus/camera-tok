@@ -34,7 +34,7 @@ const Modal = props => {
         ?
         <div className='modal-app' onClick={closeFromParent}>
           <div className='modal-container'>
-            <div className="modal-title">Confirmar eliminación del registro</div>
+            <div className="modal-title">Confirmar la eliminación del registro</div>
             <div className="modal-elements">
               {
                 _modal.data.map(({ title, description }, index) =>

@@ -40,21 +40,23 @@ const useProperties = () => {
 	const [centerColor, setCenterColor] = useState('')
 
 	useEffect(() => {
-		let colorValue = 'rgba(0,0,0,.2)';
 		let centerColor = '';
-
+		let designed = '#495057';
+		let frontGround = 'rgba(0,0,0,.4)';
+		let colorValue = frontGround;
+		
 		if (_capturedState.area === 'default') {
-			colorValue = 'rgba(0,0,0,.2)';
+			colorValue = frontGround;
 			centerColor = '';
 		}
 
 		if (_capturedState.area === 'prevCropper') {
-			colorValue = 'white';
+			colorValue = designed;
 		}
 
 		if (_capturedState.area === 'userCropper') {
-			colorValue = 'white';
-			centerColor = 'white';
+			colorValue = designed;
+			centerColor = designed;
 		}
 		setColor(colorValue);
 		setCenterColor(centerColor);

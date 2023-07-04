@@ -3,11 +3,13 @@
 	height: 35px;
 	font-weight: 500;
 	font-size: .9em;
-	border: 1px solid gray;
+	background: #e9ecef;
 }
 
 .app-button-string:hover{
 	background: black;
+	background: #343a40;
+
 	color: white;
 }
 

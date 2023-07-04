@@ -206,7 +206,7 @@ const FormItems = props => {
 							? <ButtonString title='Tomar Foto' clickEvent={e => takePhoto(e, inputValidation)} />
 							: <ButtonString title='Tomar Otra' clickEvent={cleanForm} />
 					}
-					<button onClick={cleanFormAndInput}>Nuevo Registro</button>
+					<ButtonString title='Nuevo Registro' clickEvent={cleanFormAndInput} />
 				</div>
 			</div>
 			{/*Message*/}

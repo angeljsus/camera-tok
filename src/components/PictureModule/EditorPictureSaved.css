@@ -38,6 +38,7 @@
 .user-mark-info {
 	display: flex;
 	justify-content: center;
+	font-weight: 500;
+	color: #FFFF;
 	padding: 10px 0 10px 0;
-/*	border: 1px solid;*/
 }

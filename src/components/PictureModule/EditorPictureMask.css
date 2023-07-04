@@ -11,3 +11,14 @@
 	height: 100%;
 	display: flex;
 }
+
+.mask-content-center button {
+	font-size: 1.2em;
+	color: #adb5bd;
+	border: none;
+}
+
+.mask-content-center button:hover {
+	color: #FFFF;
+	border: 1px solid #FFFF;
+}

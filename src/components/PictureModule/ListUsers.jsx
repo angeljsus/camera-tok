@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useRef } from 'react';
 // components
 import Context from '/@components/Context/Context';
-import { AiOutlineClose } from 'react-icons/ai';
+import { AiTwotoneDelete } from 'react-icons/ai';
 import ImageUser from '/@components/Elements/ImageUser';
 // apis
 import { selectUsersCaptured, deleteUserByCurp } from '/@apis/database/databaseApi';
@@ -37,7 +37,7 @@ const useUsers = () => {
 const ItemList = props => {
 	const {
 		_setCapturedState, _capturedState, _dispatchErrorHandle,
-		_pathDir, _arrayUsers, _setArrayUsers, _videoElement, _setModal, _modal
+		_pathDir, _arrayUsers, _setArrayUsers, _videoElement, _setModal,
 	} = useContext(Context);
 
 	const [classRow, setClassRow] = useState('')
@@ -124,7 +124,7 @@ const ItemList = props => {
 					{data.curp_usuario}
 				</div>
 				<div className="picture-column-opts">
-					<button onClick={() => openConfirmOption(data)} ><AiOutlineClose /></button>
+					<button onClick={() => openConfirmOption(data)} ><AiTwotoneDelete /></button>
 				</div>
 			</div>
 		</>
