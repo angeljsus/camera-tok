@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+// components
+import ButtonString from '/@components/Elements/ButtonString';
 
 const FormDeviceNotFound = props => {
   const { setDevices, setStreaming } = props;
@@ -30,7 +32,7 @@ const FormDeviceNotFound = props => {
       </div>
       <div className="picture-form-element">
         <div className="picture-form-options" style={{ justifyContent: 'flex-end' }}>
-          <button onClick={searchDevices}>Reintentar</button>
+          <ButtonString title="Reintentar" clickEvent={searchDevices} />
         </div>
       </div>
     </>
