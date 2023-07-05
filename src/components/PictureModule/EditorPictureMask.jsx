@@ -23,8 +23,8 @@ const useArea = () => {
 		const cropSide = (video.videoWidth * .01) * 25;
 		const cropArea = video.videoWidth - cropSide;
 		setArea({
-			cropArea: cropArea,
-			cropSide: cropSide,
+			cropArea: 480,
+			cropSide: 160,
 			width: video.videoWidth,
 			height: video.videoHeight,
 		});
@@ -74,9 +74,6 @@ const EditorPictureMask = () => {
 		<>
 			<div
 				className="mask-content"
-				style={{
-					width: area.width, height: area.height
-				}}
 			>
 				<div
 					className="mask-content-side"

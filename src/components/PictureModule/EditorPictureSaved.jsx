@@ -6,15 +6,19 @@ import ImageUser from '/@components/Elements/ImageUser';
 // syles
 import './EditorPictureSaved.css';
 const EditorPictureSaved = () => {
-	const { _pathDir, _capturedState, _setCapturedState, _videoElement } = useContext(Context);
+	const { _pathDir, _capturedState, _setCapturedState, _videoElement,  } = useContext(Context);
 
 	const showVisor = () => {
-		const modifyState = { ..._capturedState };
-		modifyState.cropedCurp = '';
-		modifyState.area = 'default';
-		_videoElement.current.play()
-		_setCapturedState(modifyState)
-	}
+    const modifyState = { ..._capturedState };
+    modifyState.cropedCurp = '';
+    modifyState.area = 'default';
+    const ststusShow = _videoElement.current.getAttribute('data-show');
+
+    if (ststusShow === 'true'){
+      _videoElement.current.play();
+    }
+    _setCapturedState(modifyState);
+  }
 
 	return (
 		<>

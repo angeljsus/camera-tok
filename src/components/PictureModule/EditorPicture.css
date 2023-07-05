@@ -19,6 +19,7 @@
 .picture-area-back  video{
 	width:  640px;
 	height: 480px;
+	background: #495057;
 }
 .picture-area-back  canvas {
 	display: none;

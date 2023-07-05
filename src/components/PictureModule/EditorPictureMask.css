@@ -1,13 +1,18 @@
 .mask-content {
+  width: 640px;
+  height: 480px;
 	display: flex;
+  justify-content: center;
 	position: absolute;
 }
 
 .mask-content-side {
+  /* width: 160px; */
 	height: 100%;
 }
 
 .mask-content-center {
+  /* width: 480px; */
 	height: 100%;
 	display: flex;
 }

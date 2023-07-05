@@ -20,8 +20,17 @@ const useDevices = () => {
     };
 	}, []);
 
+  useEffect(() => {
+    let statusShow = false;
+    if(arrayDevices.length){
+      statusShow = true;
+    }
+    _videoElement.current.setAttribute('data-show', statusShow);
+  }, [arrayDevices]);
+
   const updateSelect = () => {
     _videoElement.current.src = null;
+    _videoElement.current.objSrc = null;
     _setStreamingObj({});
     return updateDevicesData();
   };
