@@ -21,6 +21,7 @@ function createWindow() {
       preload: join(__dirname, 'preload.js'),
       webSecurity: false,
       nodeIntegration: true,
+      devTools: false,
     }
   });
 

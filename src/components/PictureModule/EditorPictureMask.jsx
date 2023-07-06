@@ -6,7 +6,7 @@ import ImageIcon from '/@components/Elements/ImageIcon';
 // styles
 import './EditorPictureMask.css'
 // files
-import prevImage from '/@resources/images/test.png';
+import prevImage from '/@resources/images/background.png';
 
 const useArea = () => {
 	const { _videoElement } = useContext(Context);
