@@ -21,7 +21,6 @@ const useArea = () => {
 	const getArea = () => {
 		const video = _videoElement.current;
 		const cropSide = (video.videoWidth * .01) * 25;
-		const cropArea = video.videoWidth - cropSide;
 		setArea({
 			cropArea: 480,
 			cropSide: 160,
@@ -37,6 +36,7 @@ const useProperties = () => {
 
 	const { _capturedState } = useContext(Context);
 	const [color, setColor] = useState('')
+	const [hidden, setHidden] = useState('')
 	const [centerColor, setCenterColor] = useState('')
 
 	useEffect(() => {
@@ -44,31 +44,36 @@ const useProperties = () => {
 		let designed = '#495057';
 		let frontGround = 'rgba(0,0,0,.4)';
 		let colorValue = frontGround;
+		let displaySide = false;
 		
 		if (_capturedState.area === 'default') {
 			colorValue = frontGround;
 			centerColor = '';
+			displaySide= false;
 		}
 
 		if (_capturedState.area === 'prevCropper') {
 			colorValue = designed;
+			displaySide=true;
 		}
 
 		if (_capturedState.area === 'userCropper') {
 			colorValue = designed;
 			centerColor = designed;
+			displaySide=false;
 		}
 		setColor(colorValue);
 		setCenterColor(centerColor);
+		setHidden(displaySide);
 	}, [_capturedState.area])
 
-	return { color, centerColor, _capturedState };
+	return { color, centerColor, _capturedState, hidden };
 }
 
 const EditorPictureMask = () => {
 
 	const { area } = useArea();
-	const { color, centerColor, _capturedState } = useProperties();
+	const { color, centerColor, _capturedState, hidden } = useProperties();
 
 	return (
 		<>
@@ -77,12 +82,18 @@ const EditorPictureMask = () => {
 			>
 				<div
 					className="mask-content-side"
-					style={{ width: area.cropSide, backgroundColor: color }}
+					style={{ 
+						width: area.cropSide, backgroundColor: color, 
+						display: !hidden ? 'none' : 'flex' 
+					}}
 				>
 				</div>
 				<div
 					className="mask-content-center"
-					style={{ width: area.cropArea, backgroundColor: centerColor }}
+					style={
+						hidden 
+						? { width: area.cropArea, backgroundColor: centerColor} 
+						: {flex: 1, backgroundColor: color}}
 				>
 					{/*validate with center color*/}
 					{
@@ -102,7 +113,10 @@ const EditorPictureMask = () => {
 				</div>
 				<div
 					className="mask-content-side"
-					style={{ width: area.cropSide, backgroundColor: color }}
+					style={{ 
+						width: area.cropSide, backgroundColor: color, 
+						display: !hidden ? 'none' : 'flex' 
+					}}
 				>
 				</div>
 			</div>
